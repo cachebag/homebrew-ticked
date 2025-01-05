@@ -90,6 +90,11 @@ class Ticked < Formula
     sha256 "950504e14d27cf3c9cb37744680a43bf0ac42efefc4ef4acf98dc736cab2bced"
   end
 
+  resource "syntax" do
+    url "https://files.pythonhosted.org/packages/d1/a5/6c7fa3a31c257cf318d5f893b797355dadf8dbe499e33a05f246a2d23b61/syntax-0.1.3.2.tar.gz"
+    sha256 "90bfce81f737ea369202343df870c68fa7610d41e5ea59252c09f84931495776"
+  end
+
   def install
     virtualenv_install_with_resources
   end
