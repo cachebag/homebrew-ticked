@@ -17,6 +17,7 @@ class Ticked < Formula
   resource "textual" do
     url "https://files.pythonhosted.org/packages/1f/b6/59b1de04bb4dca0f21ed7ba0b19309ed7f3f5de4396edf20cc2855e53085/textual-1.0.0.tar.gz"
     sha256 "bec9fe63547c1c552569d1b75d309038b7d456c03f86dfa3706ddb099b151399"
+    extras = ["syntax"]
   end
 
   resource "textual-dev" do
