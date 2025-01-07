@@ -100,6 +100,11 @@ class Ticked < Formula
     sha256 "4317131127d8793f740cff2fd256f369321fa49ad750f83d6f31780f7c16c67b"
   end
 
+  resource "lxml" do
+    url "https://files.pythonhosted.org/packages/e7/6b/20c3a4b24751377aaa6307eb230b66701024012c29dd374999cc92983269/lxml-5.3.0.tar.gz"
+    sha256 "4e109ca30d1edec1ac60cdbe341905dc3b8f55b16855e03a54aaf59e51ec8c6f"
+  end
+
   def install
     virtualenv_install_with_resources
   end
