@@ -95,6 +95,11 @@ class Ticked < Formula
     sha256 "90bfce81f737ea369202343df870c68fa7610d41e5ea59252c09f84931495776"
   end
 
+  resource "caldav" do
+    url "https://files.pythonhosted.org/packages/54/23/9b44499f5a830901a5f95cbe5e25df281849202223cef1d519ff79289af5/caldav-1.4.0.tar.gz"
+    sha256 "4317131127d8793f740cff2fd256f369321fa49ad750f83d6f31780f7c16c67b"
+  end
+
   def install
     virtualenv_install_with_resources
   end
