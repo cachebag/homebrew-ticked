@@ -110,6 +110,11 @@ class Ticked < Formula
     sha256 "43c2db8632959d634f4e48f6e6131e706bf2cdddad488cf0b72fda079b796bad"
   end
 
+  resource "vobject" do
+    url "https://files.pythonhosted.org/packages/d0/8a/15c34b3d27c43fc81a467d0f66577afc5542326804c42f30557e31c3259e/vobject-0.9.9.tar.gz"
+    sha256 "ac44e5d7e2079d84c1d52c50a615b9bec4b1ba958608c4c7fe40cbf33247b38e"
+  end
+
   def install
     virtualenv_install_with_resources
   end
