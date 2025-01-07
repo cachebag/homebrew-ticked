@@ -106,8 +106,8 @@ class Ticked < Formula
   end
 
   resource "icalendar" do
-    url "https://files.pythonhosted.org/packages/e7/6b/20c3a4b24751377aaa6307eb230b66701024012c29dd374999cc92983269/lxml-5.3.0.tar.gz"
-    sha256 "4e109ca30d1edec1ac60cdbe341905dc3b8f55b16855e03a54aaf59e51ec8c6f"
+    url "https://files.pythonhosted.org/packages/03/44/c9fdf8f6442e5bef2635f25dbb3d3ac12d5f2ecf5223bd94acaba51ceda4/icalendar-6.1.0.tar.gz"
+    sha256 "43c2db8632959d634f4e48f6e6131e706bf2cdddad488cf0b72fda079b796bad"
   end
 
   def install
