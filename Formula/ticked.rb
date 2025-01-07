@@ -44,6 +44,11 @@ class Ticked < Formula
     sha256 "661e1abd9198507b1409a20c02106d9670b2576e916d58f520316666abca6729"
   end
   
+  resource "charset-normalizer" do
+    url "https://files.pythonhosted.org/packages/16/b0/572805e227f01586461c80e0fd25d65a2115599cc9dad142fee4b747c357/charset_normalizer-3.4.1.tar.gz"
+    sha256 "44251f18cd68a75b56585dd00dae26183e102cd5e0f9f1466e6df5da2ed64ea3"
+  end
+  
   resource "pygments" do
     url "https://files.pythonhosted.org/packages/d3/c0/9c9832e5be227c40e1ce774d493065f83a91d6430baa7e372094e9683a45/pygments-2.19.0.tar.gz"
     sha256 "afc4146269910d4bdfabcd27c24923137a74d562a23a320a41a55ad303e19783"
