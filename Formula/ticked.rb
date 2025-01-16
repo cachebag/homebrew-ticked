@@ -8,12 +8,11 @@ class Ticked < Formula
   license "MIT"
 
   depends_on "python@3.13"
-  depends_on "gcc"  
-  depends_on "python@3.13"
   depends_on "gcc"
-  depends_on "pkg-config" 
-  depends_on "node" 
-  depends_on "cmake" 
+  depends_on "pkg-config"
+  depends_on "node"
+  depends_on "cmake"
+  depends_on "rust" => :build
 
   resource "aiohappyeyeballs" do
     url "https://files.pythonhosted.org/packages/7f/55/e4373e888fdacb15563ef6fa9fa8c8252476ea071e96fb46defac9f18bf2/aiohappyeyeballs-2.4.4.tar.gz"
