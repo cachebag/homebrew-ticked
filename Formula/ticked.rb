@@ -443,17 +443,25 @@ class Ticked < Formula
   def install
     venv = virtualenv_create(libexec, "python3.13")
   
-    # Install dependencies first
-    deps = resources.map(&:name).join(" ")
-    system libexec/"bin/pip", "install", "--upgrade", "--no-deps", "--force-reinstall", *resources.map(&:cached_download)
+    # Set up environment to match your working test
+    ENV["CPATH"] = "#{Formula["tree-sitter"].opt_include}"
+    ENV["LIBRARY_PATH"] = "#{Formula["tree-sitter"].opt_lib}"
+    ENV["TREE_SITTER_DIR"] = Formula["tree-sitter"].opt_prefix
+    ENV["CFLAGS"] = "-I#{Formula["tree-sitter"].opt_include}"
+    ENV["LDFLAGS"] = "-L#{Formula["tree-sitter"].opt_lib} -ltree-sitter"
   
-    # Then install the main package
-    system libexec/"bin/pip", "install", "--no-deps", "--force-reinstall", cached_download
+    # Configure pip to prefer binary wheels
+    system libexec/"bin/pip", "install", "--upgrade", "pip"
+    system libexec/"bin/pip", "config", "set", "global.prefer-binary", "true"
+  
+    # Install using pip normally (it will prefer wheels)
+    system libexec/"bin/pip", "install", "."
   
     # Create the bin script
-    (bin/"ticked").write_env_script(libexec/"bin/ticked", 
+    (bin/"ticked").write_env_script(libexec/"bin/ticked",
       :PYTHONPATH => ENV["PYTHONPATH"])
-  end 
+  end
+
 
   test do
     system "#{bin}/ticked", "--version"
