@@ -449,10 +449,8 @@ class Ticked < Formula
     ENV["CPATH"] = nil
     ENV["LIBRARY_PATH"] = nil
   
-    # Add pip options to allow binary wheels
-    args = []  # Remove any args that force source builds
-    virtualenv_install_with_resources(args: args)
-  end
+    virtualenv_install_with_resources
+  end 
 
   test do
     system "#{bin}/ticked", "--version"
