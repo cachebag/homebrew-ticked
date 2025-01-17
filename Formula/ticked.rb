@@ -441,24 +441,19 @@ class Ticked < Formula
   end
 
   def install
-    # Set up environment for tree-sitter compilation
-    ENV.append_path "CPATH", Formula["tree-sitter"].opt_include
-    ENV.append_path "LIBRARY_PATH", Formula["tree-sitter"].opt_lib
+    # Allow using pre-built wheels for all packages
+    ENV["PIP_NO_BUILD_ISOLATION"] = "0"
+    # Remove flags that force source builds
+    ENV["CFLAGS"] = nil
+    ENV["LDFLAGS"] = nil
+    ENV["CPATH"] = nil
+    ENV["LIBRARY_PATH"] = nil
   
-    # Create directory structure for tree-sitter
-    mkdir_p buildpath/"src/tree_sitter"
-  
-    # Copy ALL tree-sitter headers
-    tree_sitter_headers = Formula["tree-sitter"].opt_include/"tree_sitter"
-    system "cp", "-r", "#{tree_sitter_headers}/.", buildpath/"src/tree_sitter/"
-  
-    # Set environment variables that tree-sitter needs
-    ENV["TREE_SITTER_DIR"] = Formula["tree-sitter"].opt_prefix
-    ENV["CFLAGS"] = "-I#{buildpath}/src -I#{Formula["tree-sitter"].opt_include}"
-    ENV["LDFLAGS"] = "-L#{Formula["tree-sitter"].opt_lib} -ltree-sitter"
-
-    virtualenv_install_with_resources
+    # Add pip options to allow binary wheels
+    args = []  # Remove any args that force source builds
+    virtualenv_install_with_resources(args: args)
   end
+
   test do
     system "#{bin}/ticked", "--version"
   end
