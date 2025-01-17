@@ -441,18 +441,25 @@ class Ticked < Formula
   end
 
   def install
-    # Set up poetry as a build dependency
-    system "python3.13", "-m", "pip", "install", "poetry"
-
-    # Allow using pre-built wheels for all packages
+    # Use pip directly without poetry
     ENV["PIP_NO_BUILD_ISOLATION"] = "0"
-    # Remove flags that force source builds
-    ENV["CFLAGS"] = nil
-    ENV["LDFLAGS"] = nil
-    ENV["CPATH"] = nil
-    ENV["LIBRARY_PATH"] = nil
+    ENV.delete "CFLAGS"
+    ENV.delete "LDFLAGS"
+    ENV.delete "CPATH"
+    ENV.delete "LIBRARY_PATH"
   
-    virtualenv_install_with_resources
+    # Create and activate virtualenv
+    venv = virtualenv_create(libexec, "python3.13")
+  
+    # Install all resources directly with pip
+    resources.each do |r|
+      r.stage do
+        system libexec/"bin/pip", "install", "."
+      end
+    end
+  
+    # Install the main package
+    system libexec/"bin/pip", "install", "."
   end
 
   test do
