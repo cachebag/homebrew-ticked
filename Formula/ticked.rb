@@ -441,26 +441,19 @@ class Ticked < Formula
   end
 
   def install
-    # Use pip directly without poetry
-    ENV["PIP_NO_BUILD_ISOLATION"] = "0"
-    ENV.delete "CFLAGS"
-    ENV.delete "LDFLAGS"
-    ENV.delete "CPATH"
-    ENV.delete "LIBRARY_PATH"
-  
-    # Create and activate virtualenv
     venv = virtualenv_create(libexec, "python3.13")
   
-    # Install all resources directly with pip
-    resources.each do |r|
-      r.stage do
-        system libexec/"bin/pip", "install", "."
-      end
-    end
+    # Install dependencies first
+    deps = resources.map(&:name).join(" ")
+    system libexec/"bin/pip", "install", "--upgrade", "--no-deps", "--force-reinstall", *resources.map(&:cached_download)
   
-    # Install the main package
-    system libexec/"bin/pip", "install", "."
-  end
+    # Then install the main package
+    system libexec/"bin/pip", "install", "--no-deps", "--force-reinstall", cached_download
+  
+    # Create the bin script
+    (bin/"ticked").write_env_script(libexec/"bin/ticked", 
+      :PYTHONPATH => ENV["PYTHONPATH"])
+  end 
 
   test do
     system "#{bin}/ticked", "--version"
