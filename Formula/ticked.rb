@@ -441,18 +441,19 @@ class Ticked < Formula
   end
 
   def install
-    # Point to tree-sitter headers
-    treesitter_include = Formula["tree-sitter"].opt_include
-    ENV.append_path "CPATH", treesitter_include
+    # Set up environment for tree-sitter compilation
+    ENV.append_path "CPATH", Formula["tree-sitter"].opt_include
   
-    # Create necessary directories
+    # Create directory structure for tree-sitter
     mkdir_p buildpath/"src/tree_sitter"
-
-    # Copy the api.h file and symlink it as parser.h (since that's what the build expects)
-    cp "#{treesitter_include}/tree_sitter/api.h", buildpath/"src/tree_sitter/parser.h"
   
-    ENV["TREE_SITTER_PARSER_H"] = buildpath/"src/tree_sitter/parser.h"
-    ENV["CFLAGS"] = "-I#{buildpath}/src"
+    # Copy ALL tree-sitter headers
+    tree_sitter_headers = Formula["tree-sitter"].opt_include/"tree_sitter"
+    system "cp", "-r", "#{tree_sitter_headers}/.", buildpath/"src/tree_sitter/"
+  
+    # Set additional environment variables that tree-sitter needs
+    ENV["TREE_SITTER_DIR"] = Formula["tree-sitter"].opt_prefix
+    ENV["CFLAGS"] = "-I#{buildpath}/src -DTREE_SITTER_LANGUAGE=bash"
 
     virtualenv_install_with_resources
   end
