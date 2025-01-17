@@ -441,6 +441,9 @@ class Ticked < Formula
   end
 
   def install
+    # Set up poetry as a build dependency
+    system "python3.13", "-m", "pip", "install", "poetry"
+
     # Allow using pre-built wheels for all packages
     ENV["PIP_NO_BUILD_ISOLATION"] = "0"
     # Remove flags that force source builds
@@ -450,7 +453,7 @@ class Ticked < Formula
     ENV["LIBRARY_PATH"] = nil
   
     virtualenv_install_with_resources
-  end 
+  end
 
   test do
     system "#{bin}/ticked", "--version"
