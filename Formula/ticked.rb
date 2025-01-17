@@ -442,13 +442,15 @@ class Ticked < Formula
 
   def install
     # Point to tree-sitter headers
-    ENV.append_path "CPATH", Formula["tree-sitter"].opt_include
+    treesitter_include = Formula["tree-sitter"].opt_include
+    ENV.append_path "CPATH", treesitter_include
   
-    # Create a directory for the grammar packages and set environment variable
+    # Create necessary directories
     mkdir_p buildpath/"src/tree_sitter"
-    cp Formula["tree-sitter"].opt_include/"tree_sitter/parser.h", buildpath/"src/tree_sitter/"
+
+    # Copy the api.h file and symlink it as parser.h (since that's what the build expects)
+    cp "#{treesitter_include}/tree_sitter/api.h", buildpath/"src/tree_sitter/parser.h"
   
-    # Set environment variables to help find the headers
     ENV["TREE_SITTER_PARSER_H"] = buildpath/"src/tree_sitter/parser.h"
     ENV["CFLAGS"] = "-I#{buildpath}/src"
 
