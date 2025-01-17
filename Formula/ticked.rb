@@ -443,6 +443,7 @@ class Ticked < Formula
   def install
     # Set up environment for tree-sitter compilation
     ENV.append_path "CPATH", Formula["tree-sitter"].opt_include
+    ENV.append_path "LIBRARY_PATH", Formula["tree-sitter"].opt_lib
   
     # Create directory structure for tree-sitter
     mkdir_p buildpath/"src/tree_sitter"
@@ -451,13 +452,13 @@ class Ticked < Formula
     tree_sitter_headers = Formula["tree-sitter"].opt_include/"tree_sitter"
     system "cp", "-r", "#{tree_sitter_headers}/.", buildpath/"src/tree_sitter/"
   
-    # Set additional environment variables that tree-sitter needs
+    # Set environment variables that tree-sitter needs
     ENV["TREE_SITTER_DIR"] = Formula["tree-sitter"].opt_prefix
-    ENV["CFLAGS"] = "-I#{buildpath}/src -DTREE_SITTER_LANGUAGE=bash"
+    ENV["CFLAGS"] = "-I#{buildpath}/src -I#{Formula["tree-sitter"].opt_include}"
+    ENV["LDFLAGS"] = "-L#{Formula["tree-sitter"].opt_lib} -ltree-sitter"
 
     virtualenv_install_with_resources
   end
-
   test do
     system "#{bin}/ticked", "--version"
   end
