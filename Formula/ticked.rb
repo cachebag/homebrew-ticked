@@ -13,6 +13,7 @@ class Ticked < Formula
   depends_on "node"
   depends_on "cmake"
   depends_on "rust" => :build
+  depends_on "tree-sitter"
 
   resource "aiohappyeyeballs" do
     url "https://files.pythonhosted.org/packages/7f/55/e4373e888fdacb15563ef6fa9fa8c8252476ea071e96fb46defac9f18bf2/aiohappyeyeballs-2.4.4.tar.gz"
@@ -330,6 +331,17 @@ class Ticked < Formula
   end
 
   def install
+    # Point to tree-sitter headers
+    ENV.append_path "CPATH", Formula["tree-sitter"].opt_include
+  
+    # Create a directory for the grammar packages and set environment variable
+    mkdir_p buildpath/"src/tree_sitter"
+    cp Formula["tree-sitter"].opt_include/"tree_sitter/parser.h", buildpath/"src/tree_sitter/"
+  
+    # Set environment variables to help find the headers
+    ENV["TREE_SITTER_PARSER_H"] = buildpath/"src/tree_sitter/parser.h"
+    ENV["CFLAGS"] = "-I#{buildpath}/src"
+
     virtualenv_install_with_resources
   end
 
