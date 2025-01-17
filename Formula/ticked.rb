@@ -441,26 +441,26 @@ class Ticked < Formula
   end
 
   def install
+    # Create virtualenv without pip
     venv = virtualenv_create(libexec, "python3.13")
   
-    # Set up environment to match your working test
+    # Set the exact environment variables that worked in your test
     ENV["CPATH"] = "#{Formula["tree-sitter"].opt_include}"
     ENV["LIBRARY_PATH"] = "#{Formula["tree-sitter"].opt_lib}"
     ENV["TREE_SITTER_DIR"] = Formula["tree-sitter"].opt_prefix
     ENV["CFLAGS"] = "-I#{Formula["tree-sitter"].opt_include}"
     ENV["LDFLAGS"] = "-L#{Formula["tree-sitter"].opt_lib} -ltree-sitter"
   
-    # Configure pip to prefer binary wheels
-    system libexec/"bin/pip", "install", "--upgrade", "pip"
-    system libexec/"bin/pip", "config", "set", "global.prefer-binary", "true"
+    # Install ensurepip first
+    system libexec/"bin/python", "-m", "ensurepip"
   
-    # Install using pip normally (it will prefer wheels)
-    system libexec/"bin/pip", "install", "."
+    # Now install your package with all its dependencies
+    system libexec/"bin/python", "-m", "pip", "install", "."
   
     # Create the bin script
     (bin/"ticked").write_env_script(libexec/"bin/ticked",
       :PYTHONPATH => ENV["PYTHONPATH"])
-  end
+  end 
 
 
   test do
