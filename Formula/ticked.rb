@@ -3,8 +3,8 @@ class Ticked < Formula
 
   desc "Terminal-based task management and productivity tool with Spotify integration"
   homepage "https://github.com/cachebag/Ticked"
-  url "https://files.pythonhosted.org/packages/84/57/2df61c8d3203688da141db4d0e230068b5cdc97527f446b44447b99339ce/ticked-0.1.9.tar.gz"
-  sha256 "6f754b13d6822921038620d973a0067f5f42e55b4fd0d42687bd56b961f20153" 
+  url "https://files.pythonhosted.org/packages/34/36/183647395e5d43aec79079c3da237f46936612497e349830b5c8e0a0bfcc/ticked-0.2.1.tar.gz"
+  sha256 "88c1d0f087f63cff4955cf5e13cd12c7c47cf2f1a99baef52f47d4e57961da9a" 
   license "MIT"
 
   depends_on "python@3.13"
@@ -438,6 +438,11 @@ class Ticked < Formula
   resource "yarl" do
     url "https://files.pythonhosted.org/packages/b7/9d/4b94a8e6d2b51b599516a5cb88e5bc99b4d8d4583e468057eaa29d5f0918/yarl-1.18.3.tar.gz"
     sha256 "ac1801c45cbf77b6c99242eeff4fffb5e4e73a800b5c4ad4fc0be5def634d2e1"
+  end
+
+  resource "bs4" do
+    url "https://files.pythonhosted.org/packages/c9/aa/4acaf814ff901145da37332e05bb510452ebed97bc9602695059dd46ef39/bs4-0.0.2.tar.gz"
+    sha256 "a48685c58f50fe127722417bae83fe6badf500d54b55f7e39ffe43b798653925"
   end
 
   def install
