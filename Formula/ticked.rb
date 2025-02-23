@@ -3,8 +3,8 @@ class Ticked < Formula
 
   desc "Terminal-based task management and productivity tool with Spotify integration"
   homepage "https://github.com/cachebag/Ticked"
-  url "https://files.pythonhosted.org/packages/d9/2c/4aa580feca93b9e8105d4768ae38aa03b2f95270054b22f7ca4dd687aa4c/ticked-0.2.8.tar.gz"
-  sha256 "c1ffb8e40db0c9e1e19d16c9dafabcc93ee5713c63573bae6d29d234c3abb54f" 
+  url "https://files.pythonhosted.org/packages/8f/d0/612b0704d6d6c02199d2765b162c921f15389d2d9dad8c0c8e289831ac41/ticked-0.3.0.tar.gz"
+  sha256 "5499024015ed93ad4357c457eb5fd3686fab61e2d31828b8a8e4e1a111831529" 
   license "MIT"
 
   depends_on "python@3.13"
@@ -438,6 +438,11 @@ class Ticked < Formula
   resource "bs4" do
     url "https://files.pythonhosted.org/packages/c9/aa/4acaf814ff901145da37332e05bb510452ebed97bc9602695059dd46ef39/bs4-0.0.2.tar.gz"
     sha256 "a48685c58f50fe127722417bae83fe6badf500d54b55f7e39ffe43b798653925"
+  end
+
+  resource "jedi" do
+    url "https://files.pythonhosted.org/packages/72/3a/79a912fbd4d8dd6fbb02bf69afd3bb72cf0c729bb3063c6f4498603db17a/jedi-0.19.2.tar.gz"
+    sha256 "4770dc3de41bde3966b02eb84fbcf557fb33cce26ad23da12c742fb50ecb11f0"
   end
 
   def install
