@@ -3,8 +3,8 @@ class Ticked < Formula
 
   desc "Terminal-based task management and productivity tool with Spotify integration"
   homepage "https://github.com/cachebag/Ticked"
-  url "https://files.pythonhosted.org/packages/4b/38/abc318503bcda7ae8757b68fc66764f333036acc4619dbc6d0ca38476be7/ticked-0.2.7.tar.gz"
-  sha256 "4f545fcfe86039acd31630e1389e26d432553915feddac0fbe729a758695b1cb" 
+  url "https://files.pythonhosted.org/packages/d9/2c/4aa580feca93b9e8105d4768ae38aa03b2f95270054b22f7ca4dd687aa4c/ticked-0.2.8.tar.gz"
+  sha256 "c1ffb8e40db0c9e1e19d16c9dafabcc93ee5713c63573bae6d29d234c3abb54f" 
   license "MIT"
 
   depends_on "python@3.13"
