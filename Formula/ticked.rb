@@ -3,8 +3,8 @@ class Ticked < Formula
 
   desc "Terminal-based task management and productivity tool with Spotify integration"
   homepage "https://github.com/cachebag/Ticked"
-  url "https://files.pythonhosted.org/packages/98/95/a0658687b82a00a80b4eb33e614646214d3efdda86f76e0137e2548c4d86/ticked-0.2.2.tar.gz"
-  sha256 "084dbdf3bf9e0e0e43322b70983cfc0584da1dcd3a14ed1d3a8b47ad58bf0992" 
+  url "https://files.pythonhosted.org/packages/46/b6/e323196734eb3a79749291ac3273902003ec6ef985468596815015f5b699/ticked-0.2.5.tar.gz"
+  sha256 "6b2c770711a056a9fa436fd50464d370d465dcab382dc5d368fd42d92b0a13e6" 
   license "MIT"
 
   depends_on "python@3.13"
@@ -428,11 +428,6 @@ class Ticked < Formula
   resource "x-wr-timezone" do
     url "https://files.pythonhosted.org/packages/67/4a/046a53cfc20bbf5fc52ba855a7e013026854bf0064f26f34c52b04c39f7e/x_wr_timezone-2.0.0.tar.gz"
     sha256 "1e475d2dedcd2128550cd88b4b5773a224e936e1c9f22ff50104622180455265"
-  end
-
-  resource "xdg-base-dirs" do
-    url "https://files.pythonhosted.org/packages/bf/d0/bbe05a15347538aaf9fa5b51ac3b97075dfb834931fcb77d81fbdb69e8f6/xdg_base_dirs-6.0.2.tar.gz"
-    sha256 "950504e14d27cf3c9cb37744680a43bf0ac42efefc4ef4acf98dc736cab2bced"
   end
 
   resource "yarl" do
