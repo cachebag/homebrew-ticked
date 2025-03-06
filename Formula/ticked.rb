@@ -3,8 +3,8 @@ class Ticked < Formula
 
   desc "Terminal-based task management and productivity tool with Spotify integration"
   homepage "https://github.com/cachebag/Ticked"
-  url "https://files.pythonhosted.org/packages/ef/bf/5d39668fbfb8929bc9a7da0affe80cfa098495ebd77e13ff1b21001dc2bc/ticked-0.3.2.tar.gz"
-  sha256 "fb9839f840f843b5fb056f66f545404fcc9c39c0310bce0bc914c7e9776f6cce" 
+  url "https://files.pythonhosted.org/packages/5a/06/b1bb8e63f07523c5adecf118efa3e9044141248e4ee06c05f1495f190918/ticked-0.3.5.tar.gz"
+  sha256 "3341876bc5d8c8d68053c606ed508f69275340567fa9de7bf65b1a226ea798e6" 
   license "MIT"
 
   depends_on "python@3.13"
@@ -69,7 +69,7 @@ class Ticked < Formula
     url "https://files.pythonhosted.org/packages/0f/bd/1d41ee578ce09523c81a15426705dd20969f5abf006d1afe8aeff0dd776a/certifi-2024.12.14.tar.gz"
     sha256 "b650d30f370c2b724812bee08008be0c4163b163ddaec3f2546c1caf65f191db"
   end
-
+    
   resource "charset-normalizer" do
     url "https://files.pythonhosted.org/packages/16/b0/572805e227f01586461c80e0fd25d65a2115599cc9dad142fee4b747c357/charset_normalizer-3.4.1.tar.gz"
     sha256 "44251f18cd68a75b56585dd00dae26183e102cd5e0f9f1466e6df5da2ed64ea3"
@@ -443,6 +443,11 @@ class Ticked < Formula
   resource "jedi" do
     url "https://files.pythonhosted.org/packages/72/3a/79a912fbd4d8dd6fbb02bf69afd3bb72cf0c729bb3063c6f4498603db17a/jedi-0.19.2.tar.gz"
     sha256 "4770dc3de41bde3966b02eb84fbcf557fb33cce26ad23da12c742fb50ecb11f0"
+  end
+
+  resource "send2trash" do
+    url "https://files.pythonhosted.org/packages/fd/3a/aec9b02217bb79b87bbc1a21bc6abc51e3d5dcf65c30487ac96c0908c722/Send2Trash-1.8.3.tar.gz"
+    sha256 "b18e7a3966d99871aefeb00cfbcfdced55ce4871194810fc71f4aa484b953abf"
   end
 
   def install
